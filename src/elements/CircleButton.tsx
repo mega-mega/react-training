@@ -1,7 +1,18 @@
+/* tslint:disable */
+/* eslint:disable */
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
-import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
+const expoAssetId = require("../../assets/fonts/fa-solid-900.ttf");
+import { createIconSet } from '@expo/vector-icons';
+const CustomIcon = createIconSet(
+  {
+    pencil: '\uf303',
+    plus: '\uf067',
+  },
+  'FontName',
+  expoAssetId,
+);
 
 class CircleButton extends React.Component<any, {}> {
   state = {
@@ -9,12 +20,12 @@ class CircleButton extends React.Component<any, {}> {
   };
   async componentDidMount() {
     await Font.loadAsync({
-      FontAwsome: fontAwsome,
+      // FontAwsome: fontAwsome,
     });
     this.setState({ fontLoaded: true });
   }
   render() {
-    const { style, color } = this.props;
+    const {name, style, color } = this.props;
     let bgColor = '#E31676';
     let textColor = '#fff';
     if (color === 'white') {
@@ -24,9 +35,7 @@ class CircleButton extends React.Component<any, {}> {
     return (
       <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
         {this.state.fontLoaded ? (
-          <Text style={[styles.circleButtonTitle, { color: textColor }]}>
-            {this.props.children}
-          </Text>
+          <CustomIcon name={name} style={[styles.circleButtonTitle, { color: textColor }]}/>
         ) : null}
       </View>
     );
