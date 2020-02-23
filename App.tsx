@@ -7,25 +7,58 @@ import MemoEditScreen from './src/screens/MemoEditScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <AppBar />
-      {/* <MemoListScreen /> */}
-      {/* <MemoDetailScreean /> */}
-      {/* <MemoEditScreen/> */}
-      {/* <LoginScreen/> */}
-      <SignUpScreen/>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFDF6',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 78,
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+const RootStack = createStackNavigator(
+  {
+    MemoList: {
+      screen: MemoListScreen,
+      navigationOptions: {
+        title: 'MemoList',
+      },
+    },
+    MemoEdit: {
+      screen: MemoEditScreen,
+      navigationOptions: {
+        title: 'MemoList',
+      },
+    },
+    MemoDetail: {
+      screen: MemoDetailScreen,
+      navigationOptions: {
+        title: 'MemoList',
+      },
+    },
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: {
+        title: 'MemoList',
+      },
+    },
+    SignUp: {
+      screen: SignUpScreen,
+      navigationOptions: {
+        title: 'MemoList',
+      },
+    },
   },
-});
+  {
+    initialRouteName: 'MemoList',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#265366',
+      },
+      headerTitleStyle: {
+        color: '#fff',
+      },
+    },
+  },
+);
+
+const AppContainer = createAppContainer(RootStack);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
