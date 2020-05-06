@@ -1,10 +1,16 @@
-/* tslint:disable */
-/* eslint:disable */
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  TouchableOpacity,
+} from 'react-native';
 import * as Font from 'expo-font';
-const expoAssetId = require("../../assets/fonts/fa-solid-900.ttf");
 import { createIconSet } from '@expo/vector-icons';
+
+const expoAssetId = require('../../assets/fonts/fa-solid-900.ttf');
+
 const CustomIcon = createIconSet(
   {
     pencil: '\uf303',
@@ -19,35 +25,49 @@ class CircleButton extends React.Component<any, {}> {
   state = {
     fontLoaded: false,
   };
+
   async componentDidMount() {
     await Font.loadAsync({
       // FontAwsome: fontAwsome,
     });
     this.setState({ fontLoaded: true });
   }
+
   render() {
-    const {name, style, color } = this.props;
+    const { name, style, color, onPress } = this.props;
     let bgColor = '#E31676';
     let textColor = '#fff';
     if (color === 'white') {
       bgColor = '#fff';
       textColor = '#E31676';
     }
+
     return (
-      <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
-        {this.state.fontLoaded ? (
-          <CustomIcon name={name} style={[styles.circleButtonTitle, { color: textColor }]}/>
-        ) : null}
-      </View>
+      <TouchableHighlight style={[styles.container, style]} onPress={onPress} underlayColor="transparent">
+        <View
+          style={[styles.circleButton, { backgroundColor: bgColor }]}
+        >
+          {this.state.fontLoaded ? (
+            <CustomIcon
+              name={name}
+              style={[styles.circleButtonTitle, { color: textColor }]}
+            />
+          ) : null}
+        </View>
+      </TouchableHighlight>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  circleButton: {
+  container: {
     position: 'absolute',
-    bottom: 32,
-    right: 32,
+    bottom: 24,
+    right: 24,
+    width: 48,
+    height: 48,
+  },
+  circleButton: {
     width: 48,
     height: 48,
     borderRadius: 24,

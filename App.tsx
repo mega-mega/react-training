@@ -9,6 +9,24 @@ import SignUpScreen from './src/screens/SignUpScreen';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import firebase from 'firebase';
+export type ENV = typeof import('./assets/env.json');
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: this.ENV.FIREBASE_API_KEY,
+  authDomain: 'memoapp-1f6a1.firebaseapp.com',
+  databaseURL: 'https://memoapp-1f6a1.firebaseio.com',
+  projectId: 'memoapp-1f6a1',
+  storageBucket: 'memoapp-1f6a1.appspot.com',
+  messagingSenderId: '579648334197',
+  appId: '1:579648334197:web:664fa263d6146189858b3c',
+  measurementId: 'G-KPKW6TPRKW',
+};
+// Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+//     // firebase.analytics();
+
 const RootStack = createStackNavigator(
   {
     MemoList: {
@@ -43,11 +61,13 @@ const RootStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'MemoList',
+    initialRouteName: 'Login',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#265366',
       },
+      headerTintColor: '#fff',
+      headerBackTitle: ' ',
       headerTitleStyle: {
         color: '#fff',
       },

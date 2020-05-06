@@ -52,6 +52,11 @@ module.exports = {
     'no-console': 'warn',
     'no-continue': 'off',
     'require-yield': 'error',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    'react/state-in-constructor': 'off',
+    'react/destructuring-assignment': 'off',
+    'react/jsx-no-bind': 'off',
     // for react-app-env.d.ts (https://github.com/facebook/create-react-app/issues/6560)
     'spaced-comment': [
       'error',
